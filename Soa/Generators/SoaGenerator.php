@@ -16,7 +16,13 @@ class SoaGenerator
      * 
      * @var array
      */
-    protected $defaultDirectories = ['Services', 'Providers', 'Repositories'];
+    protected $defaultDirectories = ['Services', 'Repositories'];
+    
+    /**
+     *
+     * @var string package
+     */
+    protected $package;
     
     /**
      * Create a new controller generator instance.
@@ -24,9 +30,10 @@ class SoaGenerator
      * @param Illuminate\Filesystem\Filesystem $files
      * @return void
      */
-    public function __construct(Filesystem $files)
+    public function __construct(Filesystem $files, $package)
     {
         $this->files = $files; 
+        $this->package = $package;
     }
     
     /**
@@ -46,12 +53,12 @@ class SoaGenerator
      */
     protected function writeFiles($name)
     {
-        $this->writeFile($this->getStub('facade.stub', $name), "{$name}Facade", "app/Services/{$name}");
-        $this->writeFile($this->getStub('interface.stub', $name), "{$name}Interface", "app/Repositories/{$name}");
-        $this->writeFile($this->getStub('repository.stub', $name), "{$name}Repository", "app/Repositories/{$name}");
-        $this->writeFile($this->getStub('repositoryserviceprovider.stub', $name), "{$name}RepositoryServiceProvider", "app/Repositories/{$name}");
-        $this->writeFile($this->getStub('service.stub', $name), "{$name}Service", "app/Services/{$name}");
-        $this->writeFile($this->getStub('serviceserviceprovider.stub', $name), "{$name}ServiceServiceProvider", "app/Services/{$name}");
+        $this->writeFile($this->getStub('facade.stub', $name, 'Services'), "{$name}Facade", $this->getPath()."/Services/{$name}");
+        $this->writeFile($this->getStub('interface.stub', $name, 'Repositories'), "{$name}Interface", $this->getPath()."/Repositories/{$name}");
+        $this->writeFile($this->getStub('repository.stub', $name, 'Repositories'), "{$name}Repository", $this->getPath()."/Repositories/{$name}");
+        $this->writeFile($this->getStub('repositoryserviceprovider.stub', $name, 'Repositories'), "{$name}RepositoryServiceProvider", $this->getPath()."/Repositories/{$name}");
+        $this->writeFile($this->getStub('service.stub', $name, 'Services'), "{$name}Service", $this->getPath()."/Services/{$name}");
+        $this->writeFile($this->getStub('serviceserviceprovider.stub', $name, 'Services'), "{$name}ServiceServiceProvider", $this->getPath()."/Services/{$name}");
 
     }
     /**
@@ -61,9 +68,11 @@ class SoaGenerator
      * @param string $name
      * @return string
      */
-    protected function getStub($stub, $name)
+    protected function getStub($stub, $name, $namespace)
     {
         $stub = $this->files->get(__DIR__.'/stubs/'.$stub);
+        $namespace = "$namespace\\$name";
+        $stub = $this->replaceNamespaces($namespace, $stub);
         return $this->replaceNames($name, $stub);
     }
     /**
@@ -75,7 +84,7 @@ class SoaGenerator
     {
         foreach($this->defaultDirectories as $dir)
         {
-            $this->makeDirectory("app/{$dir}/{$name}");
+            $this->makeDirectory($this->getPath()."/{$dir}/{$name}");
         }
     }
     /**
@@ -125,6 +134,30 @@ class SoaGenerator
         $replacement = ['[name]', '{{name}}'];
         $toReplacement = [lcfirst($name), $name];
         return str_replace($replacement, $toReplacement, $stub);
+    }
+    
+    protected function replaceNamespaces($namespace, $stub)
+    {
+        $upperPackage = explode('/', $this->package);
+        return str_replace('{{namespace}}', " namespace ".ucfirst($upperPackage[0])."\\".  ucfirst($upperPackage[1])."\\".$namespace.";", $stub);
+    }
+    /**
+     * Get path.
+     * 
+     * @return string
+     */
+    public function getPath()
+    {
+        if($this->package)
+        {
+            $upperPackage = explode('/', $this->package);
+            $this->path = "workbench/".$this->package."/src/".ucfirst($upperPackage[0])."/".ucfirst($upperPackage[1]);
+        }
+        else
+        {
+            $this->path = $this->getPath()."/";
+        }
+        return $this->path;
     }
 
 }

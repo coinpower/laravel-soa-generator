@@ -1,4 +1,4 @@
-<?php namespace Services\{{name}};
+<?php{{namespace}}
 
 use Repositories\{{name}}\{{name}}Interface;
 

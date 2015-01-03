@@ -1,4 +1,4 @@
-<?php namespace Repositories\{{name}};
+<?php{{namespace}}
 
 class {{name}}Repository implements {{name}}Interface
 {

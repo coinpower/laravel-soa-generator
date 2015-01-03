@@ -1,4 +1,4 @@
-<?php namespace Repositories\{{name}};
+<?php{{namespace}}
 
 use Repositories\{{name}}\{{name}}Repository;
 use Illuminate\Support\ServiceProvider;

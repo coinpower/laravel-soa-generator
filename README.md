@@ -4,7 +4,7 @@ Laravel SOA Generator
 [SOA in laravel](http://dfg.gd/blog/decoupling-your-code-in-laravel-using-repositiories-and-services)
 
 #### Documentation
- **Installation (Larvel 4)**
+ **Installation (Laravel 4)**
  
  `$ cd /path/to/your/project/app/commands`
  
@@ -18,7 +18,7 @@ Laravel SOA Generator
  
  Example:
  
-  `$ php artisan soa:generate Users`
+  `$ php artisan soa:generate "Users"`
 
  
  This command will create a this structure:
@@ -26,4 +26,13 @@ Laravel SOA Generator
  `app/Services/Users/`
  
  `app/Repositories/Users/`
+ 
+ **Create SOA in your package**:
+ 
+ `$ php artisan soa:generate --package="vendor/name" "Users"`
+ 
+  This command will create a this structure:
 
+`workbench/vendor/name/src/Vendor/Name/Services/Users`
+
+`workbench/vendor/name/src/Vendor/Name/Repositories/Users`
