@@ -38,7 +38,7 @@ class soa extends Command {
 	 */
 	public function fire()
 	{
-            $generator = new SoaGenerator(new \Illuminate\Filesystem\Filesystem, $this->option('package'));
+            $generator = new SoaGenerator($this->option('package'));
             $generator->make($this->argument('name'));
             $this->info('Success!');
 	}

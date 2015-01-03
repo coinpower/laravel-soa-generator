@@ -1,6 +1,5 @@
 <?php namespace Soa\Generators;
 
-use Illuminate\Filesystem\Filesystem;
 
 class SoaGenerator
 {
@@ -22,7 +21,7 @@ class SoaGenerator
      *
      * @var string package
      */
-    protected $package;
+    public $package;
     
     /**
      * Create a new controller generator instance.
@@ -30,9 +29,9 @@ class SoaGenerator
      * @param Illuminate\Filesystem\Filesystem $files
      * @return void
      */
-    public function __construct(Filesystem $files, $package)
+    public function __construct($package = false)
     {
-        $this->files = $files; 
+        $this->files = new \Illuminate\Filesystem\Filesystem(); 
         $this->package = $package;
     }
     
@@ -138,8 +137,15 @@ class SoaGenerator
     
     protected function replaceNamespaces($namespace, $stub)
     {
-        $upperPackage = explode('/', $this->package);
-        return str_replace('{{namespace}}', " namespace ".ucfirst($upperPackage[0])."\\".  ucfirst($upperPackage[1])."\\".$namespace.";", $stub);
+        if($this->package)
+        {
+            $upperPackage = explode('/', $this->package);
+            return str_replace('{{namespace}}', " namespace ".ucfirst($upperPackage[0])."\\".  ucfirst($upperPackage[1])."\\".$namespace.";", $stub);
+        }
+        else
+        {
+            return str_replace('{{namespace}}', " namespace ".$namespace.";", $stub);    
+        }
     }
     /**
      * Get path.
@@ -155,7 +161,7 @@ class SoaGenerator
         }
         else
         {
-            $this->path = $this->getPath()."/";
+            $this->path = "app/";
         }
         return $this->path;
     }
