@@ -12,7 +12,7 @@ class soa extends Command {
 	 *
 	 * @var string
 	 */
-	protected $name = 'create:soa';
+	protected $name = 'soa:generate';
 
 	/**
 	 * The console command description.
