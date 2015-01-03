@@ -1,0 +1,17 @@
+<?php namespace Services\{{name}};
+
+use Repositories\{{name}}\{{name}}Interface;
+
+class {{name}}Service
+{
+    protected $[name]Repo;
+    
+    
+    public function __consturct({{name}}Interface $[name]Repo)
+    {
+        $this->[name]Repo = $[name]Repo;
+    }
+    
+}
+
+

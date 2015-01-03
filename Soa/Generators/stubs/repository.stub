@@ -1,0 +1,13 @@
+<?php namespace Repositories\{{name}};
+
+class {{name}}Repository implements {{name}}Interface
+{
+    
+    protected $[name]Model;
+    
+    public function __construct(Model $[name])
+    {
+        $this->[name]Model = $[name];
+    }
+    
+}
