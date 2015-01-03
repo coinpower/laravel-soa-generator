@@ -10,7 +10,7 @@ Laravel SOA Generator
  
  `$ git clone https://github.com/iillexial/laravel-soa-generator.git`
  
- **How to use? **
+ **How to use?**
  
  Create a simple SOA structure in your app:
  
