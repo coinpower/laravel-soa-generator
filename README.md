@@ -10,6 +10,17 @@ Laravel SOA Generator
  
  `$ git clone https://github.com/iillexial/laravel-soa-generator.git`
  
+
+ 
+Next add this line in  `app/start/artisan.php`:
+
+`Artisan::add(new soa());`
+
+Next execute :
+ 
+ `$ composer dump-autoload`
+ 
+ 
  **How to use?**
  
  Create a simple SOA structure in your app:
