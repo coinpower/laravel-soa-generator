@@ -7,7 +7,7 @@ class {{name}}Service
     protected $[name]Repo;
     
     
-    public function __consturct({{name}}Interface $[name]Repo)
+    public function __construct({{name}}Interface $[name]Repo)
     {
         $this->[name]Repo = $[name]Repo;
     }
