@@ -6,30 +6,42 @@ Laravel SOA Generator
 #### Documentation
  **Installation (Laravel 4)**
  
- `$ cd /path/to/your/project/app/commands`
+ ```bash
+$ cd /path/to/your/project/app/commands
+```
  
- `$ git clone https://github.com/iillexial/laravel-soa-generator.git`
+ ```bash
+$ git clone https://github.com/iillexial/laravel-soa-generator.git
+```
  
 
  
 Next add this line in  `app/start/artisan.php`:
 
-`Artisan::add(new soa());`
+```php
+Artisan::add(new soa());
+```
 
 Next execute :
  
- `$ composer dump-autoload`
+ ```bush
+$ composer dump-autoload
+```
  
  
  **How to use?**
  
  Create a simple SOA structure in your app:
  
- `$ php artisan soa:generate name`
+ ```bash
+$ php artisan soa:generate name
+````
  
  Example:
  
-  `$ php artisan soa:generate "Users"`
+  ```bash
+$ php artisan soa:generate "Users"
+```
 
  
  This command will create a this structure:
@@ -40,7 +52,9 @@ Next execute :
  
  **Create SOA in your package**:
  
- `$ php artisan soa:generate --package="vendor/name" "Users"`
+ ```bash
+$ php artisan soa:generate --package="vendor/name" "Users"
+```
  
   This command will create a this structure:
  
