@@ -43,7 +43,10 @@ Next execute :
  `$ php artisan soa:generate --package="vendor/name" "Users"`
  
   This command will create a this structure:
-
+ 
 `workbench/vendor/name/src/Vendor/Name/Services/Users`
 
 `workbench/vendor/name/src/Vendor/Name/Repositories/Users`
+
+How to add Providers and Aliases in your project you can read here:
+http://dfg.gd/blog/decoupling-your-code-in-laravel-using-repositiories-and-services
