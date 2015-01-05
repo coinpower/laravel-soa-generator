@@ -52,7 +52,7 @@ class soa extends Command {
 	{
             
 		return array(
-			array('name', InputArgument::REQUIRED, 'An example argument.'),
+			array('name', InputArgument::REQUIRED, 'Name of your SOA.'),
 		);
 	}
 
@@ -66,7 +66,7 @@ class soa extends Command {
             
             
 		return array(
-			array('package', null, InputOption::VALUE_OPTIONAL, 'An example option.', null),
+			array('package', null, InputOption::VALUE_OPTIONAL, 'Your package where you want to create SOA. For example: vendor/name', null),
 		);
         
 	}
