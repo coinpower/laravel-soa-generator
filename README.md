@@ -1,6 +1,8 @@
 Laravel SOA Generator
 =====================
 #### Links
+
+[![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/iillexial/laravel-soa-generator?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 [SOA in laravel](http://dfg.gd/blog/decoupling-your-code-in-laravel-using-repositiories-and-services)
 
 #### Documentation
